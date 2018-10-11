@@ -1,5 +1,6 @@
 package com.racabe.anagrams.controller;
 
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -51,10 +52,11 @@ public class AnagramControllerUnitTest {
   public void givenDictionaryAndWords_whenPostAnagrams_thenReturnJsonObject()
     throws Exception {
        
-      String words = "best secret";
-      MockMultipartFile dictionaryFile = new MockMultipartFile("dictionaryFile", "anagramDic.txt", "text/plain", "some xml".getBytes());
+      String words = "arona";
+      MockMultipartFile dictionaryFile = new MockMultipartFile("dictionaryFile", "anagramDic.txt", "text/plain", "aardvark\r\naardwolf\r\naaron\r\naback\r\nabacus\r\nabaft\r\nabalone\r\nabandon\r\nabandoned\r\nabandonment\r\nabandons".getBytes());
    
       Set<String> anagrams = new HashSet<String>();
+      anagrams.add("aaron");
    
       given(dictionaryService.getAnagrams(words)).willReturn(anagrams);
       
@@ -63,6 +65,7 @@ public class AnagramControllerUnitTest {
         .param("words", words)
         .contentType(MediaType.APPLICATION_JSON_VALUE))
         .andExpect(status().isOk())
+        .andExpect(jsonPath("$.anagrams", hasSize(1)))
         .andExpect(jsonPath("$.word", is(words)));
   }
 }
