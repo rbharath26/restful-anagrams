@@ -1,0 +1,48 @@
+<div class="form-horizontal form-anagrams">
+  <div class="form-group row">
+    <label class="control-label col-md-4 text-left">Dictionary: </label>
+    <div class="col-md-6">
+      <input type="file" (change)="selectFile($event)">
+    </div>
+  </div>
+  
+  <div class="form-group row">
+    <label class="control-label col-md-4 text-left">Word to search: </label>
+    <div class="col-md-6">
+      <input type="text" class="form-control" id="words" name="words" [(ngModel)]="words">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-md-12">
+      <button class="btn btn-primary" [disabled]="!words || !dictionaryFile" (click)="searchAnagrams()">Search diagrams</button>
+    </div>
+  </div>
+</div>
+
+<div class="anagrams-panel" *ngIf="loading">
+  <label class="control-label col-md-12 alert alert-info no-anagrams" *ngIf="anagramsResult == null">
+    Searching anagrams...
+  </label>
+</div>
+
+<div class="anagrams-panel" *ngIf="anagramsResult">
+  <div class="row">
+    <label class="control-label col-md-12">Anagrams of "{{anagramsResult.word}}"</label>
+  </div>
+
+  <div class="row">
+    <ul class="col-md-12 simple-list" *ngIf="anagramsResult.anagrams?.length > 0">
+      <li *ngFor="let anagram of anagramsResult.anagrams">{{anagram}}</li>
+    </ul>
+
+    <label class="control-label col-md-12 alert alert-warning no-anagrams" *ngIf="anagramsResult.anagrams?.length == 0">
+      No anagrams found
+    </label>
+  </div>
+
+  <div class="row">
+    <label class="control-label col-md-12">Execution time: {{anagramsResult.seconds}} seconds</label>
+  </div>
+  
+</div>

@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+@import './styles/bootstrap-4.1.3/css/bootstrap.min.css';
+
+.form-horizontal .control-label {
+    padding-top: 3px;
+    padding-bottom: 4px;
+}
+
+.form-anagrams {
+    padding-top: 50px;
+    width: 500px; 
+    text-align:center; 
+    margin: auto;
+}
+
+.control-label {
+    font-weight: bold;
+}
+
+.simple-list {
+    list-style-type: none;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 0;
+}
+
+.no-anagrams {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 0;
+}
+
+.anagrams-panel {
+    padding-top: 50px;
+    width: 500px; 
+    margin: auto;
+}
