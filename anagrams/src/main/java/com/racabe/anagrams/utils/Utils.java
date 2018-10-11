@@ -10,7 +10,12 @@ import java.util.Set;
 /**
  * The Class Utils.
  */
-public class Utils {
+public final class Utils {
+
+  // Private constructor to prevent instantiation
+  private Utils() {
+      throw new UnsupportedOperationException();
+  }
 
   /**
    * The Constant CONSTANT_PRIMES. This list will be used to transform a letter by a prime number.
