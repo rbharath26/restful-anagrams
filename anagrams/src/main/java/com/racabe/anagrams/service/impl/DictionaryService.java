@@ -1,5 +1,6 @@
 package com.racabe.anagrams.service.impl;
 
+import io.github.pixee.security.Filenames;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class DictionaryService implements IDictionaryService {
    */
   public void parseDictionaryToHastableByWordLength(MultipartFile dictionaryFile) {
     // Normalize file name
-    String dictionaryName = StringUtils.cleanPath(dictionaryFile.getOriginalFilename());
+    String dictionaryName = StringUtils.cleanPath(Filenames.toSimpleFileName(dictionaryFile.getOriginalFilename()));
 
     try {
       // Check if the file's name contains invalid characters
